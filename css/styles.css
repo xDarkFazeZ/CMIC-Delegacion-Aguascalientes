@@ -1,0 +1,451 @@
+:root {
+    --titulos: "Montserrat", sans-serif;
+    --texto: "Work Sans", sans-serif;
+    --colorPrincipal: #720000;
+    --colorSecundario: #5a0000;
+    --colorFondo: #F5F5F5;
+    --colorHover: #e0e0e0;
+    --colorTexto: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--texto);
+    font-size: 1.6rem;
+    /* base 16px, está bien */
+    line-height: 1.6;
+    color: var(--colorTexto);
+    background-color: var(--colorFondo);
+}
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* HEADER */
+.header {
+    background-color: var(--colorPrincipal);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.contenedor-barra {
+    display: flex;
+    justify-content: space-between;  /* Esto pone logo a la izquierda y hamburguesa a la derecha */
+    align-items: center;
+    padding: 0 2rem;
+    width: 100%;
+    transition: padding 0.2s linear;
+}
+
+.logo {
+    height: 4.5rem;
+    /* antes 7rem */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.navegacion ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.navegacion__enlace {
+    color: #fff;
+    font-family: var(--titulos);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navegacion__enlace:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Menú hamburguesa */
+.menu-hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    /* Quitar margin innecesario, asegurarse que queda a la derecha */
+    margin-right: 0;
+}
+
+.menu-hamburguesa span {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/720000/white?text=CMIC+Aguascalientes') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-contenido {
+    max-width: 800px;
+}
+
+.hero-titulo {
+    font-family: var(--titulos);
+    font-size: 3.5rem;
+    /* antes 4.5rem */
+    margin-bottom: 1.5rem;
+}
+
+.hero-texto {
+    font-size: 1.8rem;
+    /* antes 2rem */
+    margin-bottom: 2.5rem;
+}
+
+.boton {
+    display: inline-block;
+    background-color: var(--colorPrincipal);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--titulos);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: var(--colorSecundario);
+}
+
+/* CARRUSEL */
+.carrusel {
+    margin: 4rem auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carrusel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carrusel-item {
+    min-width: 100%;
+    height: 400px;
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrusel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 2rem;
+}
+
+.carrusel-control {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carrusel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* SERVICIOS */
+.servicios {
+    background-color: white;
+    padding: 5rem 0;
+}
+
+.seccion-titulo {
+    font-family: var(--titulos);
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--colorPrincipal);
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.servicio-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.servicio-img {
+    height: 200px;
+    overflow: hidden;
+}
+
+.servicio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.servicio-card:hover .servicio-img img {
+    transform: scale(1.05);
+}
+
+.servicio-contenido {
+    padding: 2rem;
+}
+
+.servicio-titulo {
+    font-family: var(--titulos);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: var(--colorPrincipal);
+}
+
+.servicio-texto {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+/* NOTICIAS */
+.noticias {
+    padding: 5rem 0;
+}
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.noticia-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.noticia-img {
+    height: 220px;
+    overflow: hidden;
+}
+
+.noticia-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noticia-contenido {
+    padding: 2rem;
+}
+
+.noticia-fecha {
+    color: #888;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.noticia-titulo {
+    font-family: var(--titulos);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--colorPrincipal);
+}
+
+.noticia-resumen {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+/* CONTACTO */
+.contacto {
+    background-color: white;
+    padding: 5rem 0;
+}
+
+.formulario-contacto {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-grupo {
+    margin-bottom: 2rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--texto);
+    font-size: 1.6rem;
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* FOOTER */
+.footer {
+    background-color: var(--colorPrincipal);
+    color: white;
+    padding: 3rem 0 1.5rem;
+}
+
+.footer-contenido {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+.footer-seccion {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-titulo {
+    font-family: var(--titulos);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.footer-enlaces {
+    list-style: none;
+}
+
+.footer-enlaces li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-enlace {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-enlace:hover {
+    color: var(--colorHover);
+}
+
+.footer-derechos {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.4rem;
+    opacity: 0.8;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+
+    .header{
+        height: 95px
+    }
+    .navegacion {
+        display: none;
+        height: auto;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+        align-items: flex-end;
+        margin-left: auto;
+    }
+
+    /* Ajustar padding en el contenedor-barra para no dejar espacio a los lados en móviles */
+    .contenedor-barra {
+        padding: 0 1rem;
+        /* reducir padding para evitar separacion del menu hamburguesa */
+    }
+
+    .hero-titulo {
+        margin-top: 50px;
+        font-size: 2.8rem;
+        /* más pequeño en móvil */
+    }
+
+    .hero-texto {
+        font-size: 1.4rem;
+    }
+
+    .servicios-grid,
+    .noticias-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carrusel-item {
+        height: 300px;
+    }
+}
