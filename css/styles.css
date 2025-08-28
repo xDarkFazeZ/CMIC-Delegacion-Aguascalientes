@@ -17,7 +17,6 @@
 
 body {
     font-family: var(--texto);
-    font-size: 1.6rem;
     line-height: 1.6;
     color: var(--colorTexto);
     background-color: var(--colorFondo);
@@ -25,17 +24,34 @@ body {
 
 h1 {
     font-family: var(--titulos);
-    font-size: 3.5rem;
+    text-align: center;
 }
 
 h2 {
     font-family: var(--subtitulos);
-    font-size: 2rem;
+    text-align: center;
 }
 
 h3 {
     font-family: var(--subtitulos);
-    font-size: 1.5rem;
+    text-align: center;
+}
+
+p,
+.noticia-fecha {
+    font-family: var(--texto);
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.noticia-fecha {
+    font-family: var(--texto);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.noticia-resumen {
+    text-align: center;
 }
 
 .contenedor {
@@ -52,20 +68,15 @@ h3 {
     top: 0;
     z-index: 1000;
     height: 80px;
-    /* puedes ajustar entre 65px - 80px */
     padding: 0 2rem;
-    /* quitamos padding arriba/abajo, dejamos solo a los lados */
     display: flex;
     align-items: center;
-    /* centra el logo y nav en vertical */
 }
 
 .contenedor-barra {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    /* reducimos padding para pegar más el logo a la izquierda */
     padding-left: 1rem;
     padding-right: 2rem;
     width: 100%;
@@ -102,7 +113,6 @@ h3 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Menú hamburguesa */
 .menu-hamburguesa {
     display: none;
     flex-direction: column;
@@ -121,7 +131,6 @@ h3 {
     transition: all 0.3s ease;
 }
 
-/* Animación cuando está activo */
 .menu-hamburguesa.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -141,7 +150,6 @@ h3 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
     background:
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
         url('../img/123.webp') no-repeat center center/cover;
@@ -154,15 +162,19 @@ h3 {
 .hero-titulo {
     color: var(--colorTitulo);
     margin-bottom: 1.5rem;
+    font-size: 3.5rem;
 }
 
 .hero-subtitulo {
     color: var(--colorTexto);
     margin-bottom: 2.5rem;
+    font-size: 2rem;
 }
 
-.boton {
-    display: inline-block;
+.boton,
+.boton-hero {
+    display: flex;
+    justify-content: center;
     background-color: var(--colorPrincipal);
     color: white;
     padding: 1.2rem 2.5rem;
@@ -173,11 +185,11 @@ h3 {
     transition: background-color 0.3s ease;
 }
 
-.boton:hover {
+.boton:hover,
+.boton-hero:hover {
     background-color: var(--colorSecundario);
 }
 
-/* CARRUSEL */
 .carrusel {
     margin: 4rem auto;
     position: relative;
@@ -230,8 +242,8 @@ h3 {
 
 /* SERVICIOS */
 .servicios {
-    background-color: white;
-    padding: 5rem 0;
+    padding: 1rem 0;
+    margin-top: -100px;
 }
 
 .seccion-titulo {
@@ -291,11 +303,14 @@ h3 {
 .servicio-texto {
     margin-bottom: 1.5rem;
     color: #666;
+    text-align: center;
 }
 
 /* NOTICIAS */
 .noticias {
     padding: 5rem 0;
+    background-color: var(--colorFondo);
+    margin-top: -100px;
 }
 
 .noticias-grid {
@@ -346,8 +361,9 @@ h3 {
 
 /* CONTACTO */
 .contacto {
-    background-color: white;
+    background-color: var(--colorFondo);
     padding: 5rem 0;
+    margin-top: -165px;
 }
 
 .formulario-contacto {
@@ -389,31 +405,30 @@ h3 {
 .footer {
     background-color: var(--colorPrincipal);
     color: white;
-    padding: 3rem 0 1.5rem;
+    padding: 3rem 2rem 1rem;
+    margin-top: 3rem;
 }
 
 .footer-contenido {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 3rem;
-    margin-bottom: 2rem;
-    margin-left: 100px;
-    margin-right: 100px;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.footer-seccion {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-titulo {
-    font-family: var(--titulos);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+.footer-seccion h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    border-bottom: 2px solid var(--colorSecundario);
     padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.footer-seccion p,
+.footer-contacto p {
+    margin-bottom: 0.8rem;
 }
 
 .footer-enlaces {
@@ -421,38 +436,83 @@ h3 {
 }
 
 .footer-enlaces li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-enlace {
-    color: #fff;
+    color: var(--texto);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-enlace:hover {
-    color: var(--colorHover);
+    color: white;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-redes a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto de flotación para los iconos */
+.footer-redes a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores específicos para cada red social al hacer hover */
+.footer-redes a[aria-label="Facebook"]:hover {
+    background-color: #3b5998;
+}
+
+.footer-redes a[aria-label="Instagram"]:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
 .footer-derechos {
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 1.4rem;
-    opacity: 0.8;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer--derechos {
+    text-align: center;
 }
 
 /* RESPONSIVO */
 @media (max-width: 840px) {
-
     .header {
         height: 95px
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+        text-align: center;
     }
 
     .navegacion {
         position: fixed;
         top: 0;
-        right: -250px; /* fuera de pantalla al inicio */
+        right: -250px;
+        /* fuera de pantalla al inicio */
         width: 250px;
         height: 100%;
         background-color: var(--colorPrincipal);
@@ -466,7 +526,8 @@ h3 {
     }
 
     .navegacion.active {
-        right: 0; /* se desliza dentro de la pantalla */
+        right: 0;
+        /* se desliza dentro de la pantalla */
     }
 
     .overlay {
@@ -475,7 +536,7 @@ h3 {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
@@ -526,4 +587,59 @@ h3 {
     .carrusel-control {
         padding: auto;
     }
+
+    .boton {
+        display: flex;
+        justify-content: center;
+        width: auto;
+        /* Evita que ocupe todo el ancho */
+        margin: 0 auto;
+        /* Centra el botón manteniendo su ancho natural */
+        padding: 0.8rem 1.5rem;
+        /* Asegura un padding consistente */
+
+    }
+
+    .hero .boton {
+        width: 80%;
+        /* O el ancho que prefieras */
+        max-width: 250px;
+        /* Ancho máximo */
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-seccion h3 {
+        border-bottom: none;
+    }
+
+    .footer-redes {
+        justify-content: center;
+    }
+
+    /* Efecto de flotación para los iconos */
+    .footer-redes a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Colores específicos para cada red social al hacer hover */
+    .footer-redes a[aria-label="Facebook"]:hover {
+        background-color: #3b5998;
+    }
+
+    .footer-redes a[aria-label="Instagram"]:hover {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+
+    .footer-redes a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
 }
