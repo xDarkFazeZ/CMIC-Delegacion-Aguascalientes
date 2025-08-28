@@ -1,11 +1,12 @@
 :root {
     --titulos: "Montserrat", sans-serif;
+    --subtitulos: "Roboto", sans-serif;
     --texto: "Work Sans", sans-serif;
     --colorPrincipal: #720000;
     --colorSecundario: #5a0000;
     --colorFondo: #F5F5F5;
-    --colorHover: #e0e0e0;
-    --colorTexto: #333;
+    --colorTitulo: #222222;
+    --colorTexto: #444444;
 }
 
 * {
@@ -17,10 +18,24 @@
 body {
     font-family: var(--texto);
     font-size: 1.6rem;
-    /* base 16px, está bien */
     line-height: 1.6;
     color: var(--colorTexto);
     background-color: var(--colorFondo);
+}
+
+h1 {
+    font-family: var(--titulos);
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-family: var(--subtitulos);
+    font-size: 2rem;
+}
+
+h3 {
+    font-family: var(--subtitulos);
+    font-size: 1.5rem;
 }
 
 .contenedor {
@@ -33,24 +48,32 @@ body {
 /* HEADER */
 .header {
     background-color: var(--colorPrincipal);
-    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: 80px;
+    /* puedes ajustar entre 65px - 80px */
+    padding: 0 2rem;
+    /* quitamos padding arriba/abajo, dejamos solo a los lados */
+    display: flex;
+    align-items: center;
+    /* centra el logo y nav en vertical */
 }
 
 .contenedor-barra {
     display: flex;
-    justify-content: space-between;  /* Esto pone logo a la izquierda y hamburguesa a la derecha */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+
+    /* reducimos padding para pegar más el logo a la izquierda */
+    padding-left: 1rem;
+    padding-right: 2rem;
     width: 100%;
-    transition: padding 0.2s linear;
 }
 
 .logo {
-    height: 4.5rem;
-    /* antes 7rem */
+    margin-top: 25px;
+    height: 6rem;
     transition: transform 0.3s ease;
 }
 
@@ -68,6 +91,7 @@ body {
     color: #fff;
     font-family: var(--titulos);
     font-weight: 600;
+    font-size: 1.5rem;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -86,7 +110,6 @@ body {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    /* Quitar margin innecesario, asegurarse que queda a la derecha */
     margin-right: 0;
 }
 
@@ -98,15 +121,30 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Animación cuando está activo */
+.menu-hamburguesa.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-hamburguesa.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguesa.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* HERO SECTION */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/720000/white?text=CMIC+Aguascalientes') no-repeat center center/cover;
-    height: 60vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+        url('../img/123.webp') no-repeat center center/cover;
 }
 
 .hero-contenido {
@@ -114,15 +152,12 @@ body {
 }
 
 .hero-titulo {
-    font-family: var(--titulos);
-    font-size: 3.5rem;
-    /* antes 4.5rem */
+    color: var(--colorTitulo);
     margin-bottom: 1.5rem;
 }
 
-.hero-texto {
-    font-size: 1.8rem;
-    /* antes 2rem */
+.hero-subtitulo {
+    color: var(--colorTexto);
     margin-bottom: 2.5rem;
 }
 
@@ -158,7 +193,7 @@ body {
 
 .carrusel-item {
     min-width: 100%;
-    height: 400px;
+    height: 300px;
 }
 
 .carrusel-item img {
@@ -408,20 +443,59 @@ body {
 }
 
 /* RESPONSIVO */
-@media (max-width: 768px) {
+@media (max-width: 840px) {
 
-    .header{
+    .header {
         height: 95px
     }
+
     .navegacion {
-        display: none;
-        height: auto;
+        position: fixed;
+        top: 0;
+        right: -250px; /* fuera de pantalla al inicio */
+        width: 250px;
+        height: 100%;
+        background-color: var(--colorPrincipal);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        padding-top: 5rem;
+        transition: right 0.3s ease;
+        z-index: 999;
     }
 
+    .navegacion.active {
+        right: 0; /* se desliza dentro de la pantalla */
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 998;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* mostrar hamburguesa */
     .menu-hamburguesa {
         display: flex;
-        align-items: flex-end;
-        margin-left: auto;
+    }
+
+    /* ocultar navegación horizontal original */
+    .navegacion ul {
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
     /* Ajustar padding en el contenedor-barra para no dejar espacio a los lados en móviles */
@@ -446,6 +520,10 @@ body {
     }
 
     .carrusel-item {
-        height: 300px;
+        height: auto;
+    }
+
+    .carrusel-control {
+        padding: auto;
     }
 }
